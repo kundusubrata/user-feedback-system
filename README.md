@@ -84,21 +84,21 @@ A full-stack web application for collecting, managing, and viewing user feedback
 ### Project Structure
 ```
 feedback-system/
-├── client/                  # Frontend React application
+├── client/                         # Frontend React application
 │   ├── src/
-│   │   ├── components/      # React components
-│   │   ├── types/           # TypeScript type definitions
-│   │   └── App.tsx          # Main application component
+│   │   ├── components/             # Reusable UI components
+│   │   ├── types/                  # TypeScript type definitions
+│   │   └── App.tsx                 # Root component
 │   └── ...
-├── server/                  # Backend Express application
-│   ├── controllers/         # Route controllers
-│   ├── prisma/              # Prisma schema and migrations
-│	├── src/
-│		├── controllers/         # Route controllers
-│		├── routes/              # API routes
-│		├── types/               # TypeScript type definitions
-│   	└── index.ts             # Server entry point
+├── server/                         # Backend Express application
+│   ├── prisma/                     # Prisma schema and migration files
+│   └── src/
+│       ├── controllers/            # Business logic for routes
+│       ├── routes/                 # Express route definitions
+│       ├── types/                  # TypeScript type definitions
+│       └── index.ts                # Entry point of the server
 └── ...
+
 ```
 ### Application Flow
 
