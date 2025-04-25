@@ -1,5 +1,5 @@
+import { FeedbackCategory, PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import { FeedbackInput } from "../types/feedback";
 
 const prisma = new PrismaClient();
@@ -7,9 +7,9 @@ const prisma = new PrismaClient();
 // Post a new feedback
 export const postFeedback = async (req: Request, res: Response) => {
   try {
-    const { name, email, message }: FeedbackInput = req.body;
+    const { name, email, message, category }: FeedbackInput = req.body;
     const feedback = await prisma.feedback.create({
-      data: { name, email, message },
+      data: { name, email, message, category },
     });
     res.status(201).json(feedback);
   } catch (error) {
@@ -19,10 +19,15 @@ export const postFeedback = async (req: Request, res: Response) => {
 
 // Get all feedback
 export const getFeedback = async (req: Request, res: Response) => {
-  const { sortBy = "createdAt", order = "desc" } = req.query;
+  const { sortBy = "createdAt", order = "desc", category } = req.query;
 
   try {
+    const where = category
+      ? { category: category as FeedbackCategory }
+      : undefined;
+
     const feedbackList = await prisma.feedback.findMany({
+      where,
       orderBy: {
         [sortBy as string]: order === "asc" ? "asc" : "desc",
       },

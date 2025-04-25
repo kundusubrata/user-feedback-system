@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FeedbackInput } from "../types/feedback";
+import { FeedbackCategory, FeedbackInput } from "../types/feedback";
 import axios from "axios";
 
 export default function FeedbackForm() {
@@ -7,16 +7,17 @@ export default function FeedbackForm() {
     name: "",
     email: "",
     message: "",
+    category: FeedbackCategory.GENERAL,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await axios.post("http://localhost:4000/api/v1/feedback", formData);
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", message: "", category: FeedbackCategory.GENERAL });
   };
 
   return (
@@ -50,6 +51,22 @@ export default function FeedbackForm() {
               className="input"
               required
             />
+          </div>
+
+          <div>
+            <label htmlFor="category">Category</label>
+            <select
+              id="category"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="input"
+            >
+              <option value="GENERAL">General</option>
+              <option value="BUG_REPORT">Bug Report</option>
+              <option value="FEATURE_REQUEST">Feature Request</option>
+              <option value="SUGGESTION">Suggestion</option>
+            </select>
           </div>
 
           <div>
