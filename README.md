@@ -7,17 +7,17 @@ A full-stack web application for collecting, managing, and viewing user feedback
 ## Table of Contents
 
 - [Feedback Management System](#feedback-management-system)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Demonstration](#demonstration)
-  - [Tech Stack](#tech-stack)
-  - [Prerequisites](#prerequisites)
-  - [Setup](#setup)
-  - [Architecture \& Flow](#architecture--flow)
-    - [Project Structure](#project-structure)
-    - [Application Flow](#application-flow)
-  - [Contacts](#contacts)
-  - [Contributing](#contributing)
+	- [Table of Contents](#table-of-contents)
+	- [Features](#features)
+	- [Demonstration](#demonstration)
+	- [Tech Stack](#tech-stack)
+	- [Prerequisites](#prerequisites)
+	- [Setup](#setup)
+	- [Architecture \& Flow](#architecture--flow)
+		- [Project Structure](#project-structure)
+		- [Application Flow](#application-flow)
+	- [Contacts](#contacts)
+	- [Contributing](#contributing)
 
 ## Features
 
@@ -38,7 +38,7 @@ A full-stack web application for collecting, managing, and viewing user feedback
 
 ## Prerequisites
 
--   Node.js (v14+)
+-   Node.js (v18+)
 -   npm or pnpm
 -   PostgreSQL database or docker
 
@@ -92,10 +92,12 @@ feedback-system/
 │   └── ...
 ├── server/                  # Backend Express application
 │   ├── controllers/         # Route controllers
-│   ├── routes/              # API routes
 │   ├── prisma/              # Prisma schema and migrations
-│   ├── types/               # TypeScript type definitions
-│   └── index.ts             # Server entry point
+│	├── src/
+│		├── controllers/         # Route controllers
+│		├── routes/              # API routes
+│		├── types/               # TypeScript type definitions
+│   	└── index.ts             # Server entry point
 └── ...
 ```
 ### Application Flow
